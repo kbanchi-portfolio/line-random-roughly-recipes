@@ -22,7 +22,7 @@ def get_recipes(targets):
         recipes.append(
             {
                 "name": tag.find_all("a")[0].text.strip(),
-                "image": tag.img["src"],
+                "image": tag.find_all("img")[1]["src"],
                 "link": f'{BASE_URL}/{tag.find_all("a")[0].get("href")}',
             }
         )

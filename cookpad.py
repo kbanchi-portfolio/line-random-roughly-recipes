@@ -15,13 +15,13 @@ def get_recipes(targets):
     # Parse the response text with BeautifulSoup
     soup = BeautifulSoup(response.text, "html.parser")
     # Find all recipe previews in the parsed HTML
-    tags = soup.find_all("li", class_="recipe-preview")
+    tags = soup.find_all("li", class_="ranked-list__item")
     recipes = []
     for tag in tags:
         # Append each recipe's name, image, and link to the recipes list
         recipes.append(
             {
-                "name": tag.find_all("a")[1].text,
+                "name": tag.find_all("a")[0].text.strip(),
                 "image": tag.img["src"],
                 "link": f'{BASE_URL}/{tag.find_all("a")[0].get("href")}',
             }
